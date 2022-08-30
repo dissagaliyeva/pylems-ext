@@ -1,3 +1,5 @@
+import os
+
 import lems.api as lems
 
 
@@ -32,12 +34,12 @@ class Models:
         model = lems.Model()
 
         # remove brackets and store only numeric values
-        self.model = {k: v[0] for k, v in self.model.items() if isinstance(v, list) and len(v) == 1}
+        numeric = {k: v[0] for k, v in self.model.items() if isinstance(v, list) and len(v) == 1}
 
-        # append values
-        model.add(lems.Component(id_='1', type_='SJHM3D', **self.model))
-
-        model.export_to_file('model.xml')
+        # store only those parameters that have numeric values,
+        # this will be used and stored in ../output/param folder
+        model.add(lems.Component(id_='1', type_='SJHM3D', **numeric))
+        model.export_to_file(os.path.join(self.output, 'params.xml'))
 
 
 print(Models('hindmarshRose', '../examples',
