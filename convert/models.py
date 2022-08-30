@@ -31,6 +31,9 @@ class Models:
     def save_lems(self):
         model = lems.Model()
 
+        # remove brackets and store only numeric values
+        self.model = {k: v[0] for k, v in self.model.items() if isinstance(v, list) and len(v) == 1}
+
         # append values
         model.add(lems.Component(id_='1', type_='SJHM3D', **self.model))
 
