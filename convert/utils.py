@@ -7,7 +7,9 @@
 import os.path
 
 TVB_MODELS = {
-    'ReducedSetHindmarshRose': 'hindmarshRose'
+    'ReducedSetHindmarshRose': {'name': 'hindmarshRose',
+                                'desc': 'These are the equations to simulate the time series with the '
+                                        'Stefanescu-Jirsa 3D (reduced Hindmarsh-Rose model) model.'}
 }
 
 
