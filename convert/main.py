@@ -25,3 +25,43 @@ Features:
 1. Add logger that shows the steps and if there were any mistakes
 
 """
+
+import os
+import re
+
+from utils import *
+import lems.api as lems
+
+
+# def __init__(self, model_name: [None, str, list], output, uid='default',
+#              usage='app', unit='s', store_numeric=True, suffix=None, **params):
+
+
+class XML:
+    def __init__(self, input_path='../examples/50healthy_code.py', output_path='../example',
+                 unit='s', uid='default', usage='app', store_numeric=True, suffix=None):
+        self.input_path = input_path
+        self.output_path = output_path
+        self.unit = unit
+        self.uid = uid
+        self.usage = usage
+        self.store_numeric = store_numeric
+        self.suffix = suffix
+
+        self.model_name = None
+        self.params = None
+
+        self.content = open_file(input_path)                # get content from the input path
+        self.models = ['hindmarshRose', 'wongwang']         # supported models
+
+    def get_model(self):
+        pattern = ''.join(self.content)
+        print(re.findall('Hindmarsh[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern))
+
+
+
+
+xm = XML()
+print(xm.get_model())
+
+
