@@ -12,6 +12,6 @@ class XML:
         self.content = open_file(input_path)        # get content from the input path
         self.model = lems.Model()                   # define LEMS model
 
-    def
+
 
 
