@@ -1,0 +1,152 @@
+<ns0:Lems xmlns:ns0="http://www.neuroml.org/lems/0.7.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.6 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.6.xsd">
+  <ns0:Component id="delta_series" type="SJHM3D" r="0.006" a="1.0" b="3.0" c="1.0" d="5.0" s="4.0" xo="-1.6" K11="0.5" K12="0.1" K21="0.15" sigma="0.3" mu="2.2" x_1="-1.6" />
+</ns0:Lems><ns0:Lems xmlns:ns0="http://www.neuroml.org/lems/0.7.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.6 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.6.xsd">
+  <ns0:Dimension i="-1" l="3" m="1" name="voltage" t="-3" />
+  <ns0:Dimension name="time" t="1" />
+  <ns0:Dimension i="1" name="current" />
+  <ns0:ComponentType name="hindmarshRose">
+    <ns0:Parameter dimension="none" name="a1" />
+    <ns0:Parameter dimension="none" name="a2" />
+    <ns0:Parameter dimension="none" name="a3" />
+    <ns0:Parameter dimension="none" name="b1" />
+    <ns0:Parameter dimension="none" name="b2" />
+    <ns0:Parameter dimension="none" name="b3" />
+    <ns0:Parameter dimension="none" name="c1" />
+    <ns0:Parameter dimension="none" name="c2" />
+    <ns0:Parameter dimension="none" name="c3" />
+    <ns0:Parameter dimension="none" name="d1" />
+    <ns0:Parameter dimension="none" name="d2" />
+    <ns0:Parameter dimension="none" name="d3" />
+    <ns0:Parameter dimension="none" name="e1" />
+    <ns0:Parameter dimension="none" name="e2" />
+    <ns0:Parameter dimension="none" name="e3" />
+    <ns0:Parameter dimension="none" name="f1" />
+    <ns0:Parameter dimension="none" name="f2" />
+    <ns0:Parameter dimension="none" name="f3" />
+    <ns0:Parameter dimension="none" name="IE1" />
+    <ns0:Parameter dimension="none" name="IE2" />
+    <ns0:Parameter dimension="none" name="IE3" />
+    <ns0:Parameter dimension="none" name="II1" />
+    <ns0:Parameter dimension="none" name="II2" />
+    <ns0:Parameter dimension="none" name="II3" />
+    <ns0:Parameter dimension="none" name="r" />
+    <ns0:Parameter dimension="none" name="s" />
+    <ns0:Parameter dimension="none" name="m1" />
+    <ns0:Parameter dimension="none" name="m2" />
+    <ns0:Parameter dimension="none" name="m3" />
+    <ns0:Parameter dimension="none" name="n1" />
+    <ns0:Parameter dimension="none" name="n2" />
+    <ns0:Parameter dimension="none" name="n3" />
+    <ns0:Parameter dimension="none" name="K11" />
+    <ns0:Parameter dimension="none" name="K12" />
+    <ns0:Parameter dimension="none" name="K21" />
+    <ns0:Parameter dimension="none" name="h1" />
+    <ns0:Parameter dimension="none" name="h2" />
+    <ns0:Parameter dimension="none" name="h3" />
+    <ns0:Parameter dimension="none" name="p1" />
+    <ns0:Parameter dimension="none" name="p2" />
+    <ns0:Parameter dimension="none" name="p3" />
+    <ns0:Parameter dimension="none" name="A11" />
+    <ns0:Parameter dimension="none" name="A12" />
+    <ns0:Parameter dimension="none" name="A13" />
+    <ns0:Parameter dimension="none" name="A21" />
+    <ns0:Parameter dimension="none" name="A22" />
+    <ns0:Parameter dimension="none" name="A23" />
+    <ns0:Parameter dimension="none" name="A31" />
+    <ns0:Parameter dimension="none" name="A32" />
+    <ns0:Parameter dimension="none" name="A33" />
+    <ns0:Parameter dimension="none" name="B11" />
+    <ns0:Parameter dimension="none" name="B12" />
+    <ns0:Parameter dimension="none" name="B13" />
+    <ns0:Parameter dimension="none" name="B21" />
+    <ns0:Parameter dimension="none" name="B22" />
+    <ns0:Parameter dimension="none" name="B23" />
+    <ns0:Parameter dimension="none" name="B31" />
+    <ns0:Parameter dimension="none" name="B32" />
+    <ns0:Parameter dimension="none" name="B33" />
+    <ns0:Parameter dimension="none" name="C11" />
+    <ns0:Parameter dimension="none" name="C12" />
+    <ns0:Parameter dimension="none" name="C13" />
+    <ns0:Parameter dimension="none" name="C21" />
+    <ns0:Parameter dimension="none" name="C22" />
+    <ns0:Parameter dimension="none" name="C23" />
+    <ns0:Parameter dimension="none" name="C31" />
+    <ns0:Parameter dimension="none" name="C32" />
+    <ns0:Parameter dimension="none" name="C33" />
+    <ns0:Constant dimension="time" name="SEC" value="1s" />
+    <ns0:Exposure dimension="none" name="zeta1" />
+    <ns0:Exposure dimension="none" name="zeta2" />
+    <ns0:Exposure dimension="none" name="zeta3" />
+    <ns0:Exposure dimension="none" name="eta1" />
+    <ns0:Exposure dimension="none" name="eta2" />
+    <ns0:Exposure dimension="none" name="eta3" />
+    <ns0:Exposure dimension="none" name="tau1" />
+    <ns0:Exposure dimension="none" name="tau2" />
+    <ns0:Exposure dimension="none" name="tau3" />
+    <ns0:Exposure dimension="none" name="alpha1" />
+    <ns0:Exposure dimension="none" name="alpha2" />
+    <ns0:Exposure dimension="none" name="alpha3" />
+    <ns0:Exposure dimension="none" name="beta1" />
+    <ns0:Exposure dimension="none" name="beta2" />
+    <ns0:Exposure dimension="none" name="beta3" />
+    <ns0:Exposure dimension="none" name="gamma1" />
+    <ns0:Exposure dimension="none" name="gamma2" />
+    <ns0:Exposure dimension="none" name="gamma3" />
+    <ns0:Dynamics>
+      <ns0:StateVariable dimension="none" exposure="zeta1" name="zeta1" />
+      <ns0:StateVariable dimension="none" exposure="zeta2" name="zeta2" />
+      <ns0:StateVariable dimension="none" exposure="zeta3" name="zeta3" />
+      <ns0:StateVariable dimension="none" exposure="eta1" name="eta1" />
+      <ns0:StateVariable dimension="none" exposure="eta2" name="eta2" />
+      <ns0:StateVariable dimension="none" exposure="eta3" name="eta3" />
+      <ns0:StateVariable dimension="none" exposure="tau1" name="tau1" />
+      <ns0:StateVariable dimension="none" exposure="tau2" name="tau2" />
+      <ns0:StateVariable dimension="none" exposure="tau3" name="tau3" />
+      <ns0:StateVariable dimension="none" exposure="alpha1" name="alpha1" />
+      <ns0:StateVariable dimension="none" exposure="alpha2" name="alpha2" />
+      <ns0:StateVariable dimension="none" exposure="alpha3" name="alpha3" />
+      <ns0:StateVariable dimension="none" exposure="beta1" name="beta1" />
+      <ns0:StateVariable dimension="none" exposure="beta2" name="beta2" />
+      <ns0:StateVariable dimension="none" exposure="beta3" name="beta3" />
+      <ns0:StateVariable dimension="none" exposure="gamma1" name="gamma1" />
+      <ns0:StateVariable dimension="none" exposure="gamma2" name="gamma2" />
+      <ns0:StateVariable dimension="none" exposure="gamma3" name="gamma3" />
+      <ns0:DerivedVariable name="P1" value="eta1 - a1 * zeta1^3 + b1 * zeta1^2 + K11 * ( A11 * zeta1 + A12 * zeta2 + A13 * zeta3 - zeta1 ) - K12 * (B11 * alpha1 + B12 * alpha2 + B13 * alpha3- zeta1) + IE1" />
+      <ns0:DerivedVariable name="P2" value="eta2 - a2 * zeta2^3 + b2 * zeta2^2 + K11 * ( A21 * zeta1 + A22 * zeta2 + A23 * zeta3 - zeta2 ) - K12 * (B11 * alpha1 + B12 * alpha2 + B13 * alpha3- zeta2) + IE2" />
+      <ns0:DerivedVariable name="P3" value="eta3 - a3 * zeta3^3 + b3 * zeta3^2 + K11 * ( A31 * zeta1 + A32 * zeta2 + A33 * zeta3 - zeta3 ) - K12 * (B11 * alpha1 + B12 * alpha2 + B13 * alpha3- zeta3) + IE3" />
+      <ns0:DerivedVariable name="Q1" value="c1 - d1 * zeta1^2 -eta1" />
+      <ns0:DerivedVariable name="Q2" value="c2 - d2 * zeta2^2 -eta2" />
+      <ns0:DerivedVariable name="Q3" value="c3 - d3 * zeta3^2 -eta3" />
+      <ns0:DerivedVariable name="R1" value="r * s * zeta1 - r * tau1 - m1" />
+      <ns0:DerivedVariable name="R2" value="r * s * zeta2 - r * tau2 - m2" />
+      <ns0:DerivedVariable name="R3" value="r * s * zeta3 - r * tau3 - m3" />
+      <ns0:DerivedVariable name="PI1" value="beta1 - e1 * alpha1^3 + f1 * alpha1^2 + K21 * ( C11 * zeta1 + C12 * zeta2 + C13 * zeta3 - alpha1 ) + II1" />
+      <ns0:DerivedVariable name="PI2" value="beta2 - e2 * alpha2^3 + f2 * alpha2^2 + K21 * ( C21 * zeta1 + C22 * zeta2 + C23 * zeta3 - alpha2 ) + II2" />
+      <ns0:DerivedVariable name="PI3" value="beta3 - e3 * alpha3^3 + f3 * alpha3^2 + K21 * ( C31 * zeta1 + C32 * zeta2 + C33 * zeta3 - alpha3 ) + II3" />
+      <ns0:DerivedVariable name="QI1" value="h1 - p1 * alpha1^2 - beta1" />
+      <ns0:DerivedVariable name="QI2" value="h2 - p2 * alpha2^2 - beta2" />
+      <ns0:DerivedVariable name="QI3" value="h3 - p3 * alpha3^2 - beta3" />
+      <ns0:DerivedVariable name="RI1" value="r * s * alpha1 - r * gamma1 - n1" />
+      <ns0:DerivedVariable name="RI2" value="r * s * alpha2 - r * gamma2 - n2" />
+      <ns0:DerivedVariable name="RI3" value="r * s * alpha3 - r * gamma3 - n3" />
+      <ns0:TimeDerivative value="(P1-tau1) / SEC" variable="zeta1" />
+      <ns0:TimeDerivative value="(P2-tau2) / SEC" variable="zeta2" />
+      <ns0:TimeDerivative value="(P3-tau3) / SEC" variable="zeta3" />
+      <ns0:TimeDerivative value="Q1/ SEC" variable="eta1" />
+      <ns0:TimeDerivative value="Q2/ SEC" variable="eta2" />
+      <ns0:TimeDerivative value="Q3/ SEC" variable="eta3" />
+      <ns0:TimeDerivative value="R1 / SEC" variable="tau1" />
+      <ns0:TimeDerivative value="R2 / SEC" variable="tau2" />
+      <ns0:TimeDerivative value="R3 / SEC" variable="tau3" />
+      <ns0:TimeDerivative value="(PI1-eta1) / SEC" variable="alpha1" />
+      <ns0:TimeDerivative value="(PI2-eta2) / SEC" variable="alpha2" />
+      <ns0:TimeDerivative value="(PI3-eta3) / SEC" variable="alpha3" />
+      <ns0:TimeDerivative value="QI1/ SEC" variable="beta1" />
+      <ns0:TimeDerivative value="QI2/ SEC" variable="beta2" />
+      <ns0:TimeDerivative value="QI3/ SEC" variable="beta3" />
+      <ns0:TimeDerivative value="RI1 / SEC" variable="gamma1" />
+      <ns0:TimeDerivative value="RI2 / SEC" variable="gamma2" />
+      <ns0:TimeDerivative value="RI3 / SEC" variable="gamma3" />
+    </ns0:Dynamics>
+  </ns0:ComponentType>
+  </ns0:Lems>

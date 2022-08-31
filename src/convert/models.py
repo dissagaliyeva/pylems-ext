@@ -88,22 +88,15 @@ class Models:
             xml1 = self.path
             xml2 = os.path.join('templates', self.model_name + '.xml')
 
-            for xml in [xml1, xml2]:
-                tree = ElementTree.parse(xml)
-                root = tree.getroot()
+            with open(os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml'), 'a') as file:
+                for xml in [xml2, xml1]:
+                    temp = ElementTree.tostring(ElementTree.parse(xml).getroot()).decode('utf-8')
 
-                if model is None:
-                    model = root
-                else:
-                    print(dir(root))
-                    print(root.items())
-                    print(root.text)
-                    # elements = root.find('Lems')
-                    # print(type(elements))
-                    # print(type(model))
-                    # for element in elements._children:
-                    #     model[1].append(element)
-        # print(model)
+                    for t in temp:
+
+
+            # print(ElementTree.tostring(ElementTree.parse(xml1).getroot()).decode("utf-8"))
+            # print(ElementTree.tostring(ElementTree.parse(xml2).getroot()).decode("utf-8"))
 
 
 print(Models('hindmarshRose', '../../examples', suffix='50healthy', uid='delta_series',
