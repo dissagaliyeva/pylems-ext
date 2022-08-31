@@ -25,7 +25,7 @@ class Models:
         self.models = {
             # define default values of HindmarhRose from TVB model's package
             # https://github.com/the-virtual-brain/tvb-root/blob/master/tvb_library/tvb/simulator/models/stefanescu_jirsa.py
-            'hindmarshRose': dict(r=[0.006], a=[1.], b=[3.], c=[1.], d=[5.], s=[1.], xo=[-1.6], K11=[0.5],
+            'hindmarshrose': dict(r=[0.006], a=[1.], b=[3.], c=[1.], d=[5.], s=[1.], xo=[-1.6], K11=[0.5],
                                   K12=[0.1], K21=[0.15], sigma=[0.3], mu=[3.3], x_1=[-1.6], A_ik=None, B_ik=None,
                                   C_ik=None, a_i=None, b_i=None, c_i=None, d_i=None, e_i=None, f_i=None, h_i=None,
                                   p_i=None, IE_i=None, II_i=None, m_i=None, n_i=None,
@@ -53,9 +53,9 @@ class Models:
     def create_params(self):
         model = lems.Model()
 
-        if self.model_name == 'hindmarshRose':
+        if self.model_name == 'hindmarshrose':
             self.comp_type = 'SJHM3D'
-        elif self.model_name == 'wong-wang':
+        elif self.model_name == 'wongwang':
             self.comp_type = 'WongWang'
 
         if self.store_numeric:
@@ -102,6 +102,6 @@ class Models:
                 exists = True
 
 
-print(Models('hindmarshRose', '../../examples', suffix='50healthy', uid='delta_series',
+print(Models('hindmarshrose', '../../examples', suffix='50healthy', uid='delta_series',
              r=[0.006], a=[1.0], b=[3.0], c=[1.0], d=[5.0], s=[4.0], xo=[-1.6], K11=[0.5],
              K12=[0.1], K21=[0.15], sigma=[0.3], mu=[2.2], variables_of_interest=["xi", "alpha"]).model)

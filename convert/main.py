@@ -25,7 +25,7 @@ Features:
 1. Add logger that shows the steps and if there were any mistakes
 
 """
-
+import json
 import os
 import re
 
@@ -52,11 +52,33 @@ class XML:
         self.params = None
 
         self.content = open_file(input_path)                # get content from the input path
-        self.models = ['hindmarshRose', 'wongwang']         # supported models
+        self.models = ['hindmarshrose', 'wongwang']         # supported models
 
     def get_model(self):
         pattern = ''.join(self.content)
-        print(re.findall('Hindmarsh[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern))
+        match = re.findall(r'Hindmarsh[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern)
+
+        print(match)
+
+        if len(match) > 0:
+            # get only parameters
+            self.model_name = re.match('[a-zA-Z]+', match[0])[0]
+
+            self.params = [x.strip(',') for x in re.findall(r'[a-zA-Z0-9]+\=[0-9\,\.\-\'\"\[\]]+', match[0])
+                           if x.endswith('],')]
+            self.split_params()
+
+    def split_params(self):
+        struct = {}
+
+        for param in self.params:
+            k = re.match(r'[a-zA-Z0-9]+', param)[0]
+            v = re.findall(r'[0-9\.]+', re.findall(r'\[[0-9\.\-]+', param)[0])[0]
+            struct[k] = v
+
+        self.params = struct
+
+
 
 
 
