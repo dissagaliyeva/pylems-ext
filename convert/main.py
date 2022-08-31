@@ -30,16 +30,14 @@ import os
 import re
 
 from utils import *
-import lems.api as lems
-
-
-# def __init__(self, model_name: [None, str, list], output, uid='default',
-#              usage='app', unit='s', store_numeric=True, suffix=None, **params):
+from models import *
 
 
 class XML:
-    def __init__(self, input_path='../examples/50healthy_code.py', output_path='../example',
+    def __init__(self, input_path='../examples/50healthy_code.py', output_path='../examples',
                  unit='s', uid='default', usage='app', store_numeric=True, suffix=None):
+        self.model = None
+        self.temp_params = None
         self.input_path = input_path
         self.output_path = output_path
         self.unit = unit
@@ -56,34 +54,32 @@ class XML:
 
     def get_model(self):
         pattern = ''.join(self.content)
-        match = re.findall(r'Hindmarsh[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern)
 
-        print(match)
+        # TODO: add other models as well
+        match = re.findall(r'Hindmarsh[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern)
 
         if len(match) > 0:
             # get only parameters
-            self.model_name = re.match('[a-zA-Z]+', match[0])[0]
+            self.model_name = re.match('[a-zA-Z]+', match[0])[0].lower()
 
-            self.params = [x.strip(',') for x in re.findall(r'[a-zA-Z0-9]+\=[0-9\,\.\-\'\"\[\]]+', match[0])
-                           if x.endswith('],')]
+            self.temp_params = [x.strip(',') for x in re.findall(r'[a-zA-Z0-9]+\=[0-9\,\.\-\'\"\[\]]+', match[0])
+                                if x.endswith('],')]
             self.split_params()
+            self.model = Models(self.model_name, self.output_path, self.uid, suffix=self.suffix, **self.params)
 
     def split_params(self):
         struct = {}
 
-        for param in self.params:
+        for param in self.temp_params:
             k = re.match(r'[a-zA-Z0-9]+', param)[0]
             v = re.findall(r'[0-9\.]+', re.findall(r'\[[0-9\.\-]+', param)[0])[0]
-            struct[k] = v
+            struct[k] = [float(v)]
 
         self.params = struct
+        print(self.params)
 
 
-
-
-
-
-xm = XML()
+xm = XML(suffix='50healthy', uid='delta_times')
 print(xm.get_model())
 
 
