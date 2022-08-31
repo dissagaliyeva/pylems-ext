@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 from xml.etree import ElementTree
 
 import lems.api as lems
@@ -83,16 +84,32 @@ class Models:
 
     def merge_xml(self):
         if os.path.exists(self.path):
-            model = None
+            model = lems.Model()
 
             xml1 = self.path
             xml2 = os.path.join('templates', self.model_name + '.xml')
 
-            with open(os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml'), 'a') as file:
-                for xml in [xml2, xml1]:
-                    temp = ElementTree.tostring(ElementTree.parse(xml).getroot()).decode('utf-8')
+            # with open(os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml'), 'a') as file:
+            #     for xml in [xml2, xml1]:
+            #         temp = ElementTree.parse(xml)
+            exists = False
+            file = '../../examples/test.xml'
 
-                    for t in temp:
+            if os.path.exists(file):
+                os.remove(file)
+
+            for fname in [xml2, xml1]:
+                with open(file, 'a') as outfile:
+                    with open(fname) as infile:
+                        for line in infile:
+                            if line.startswith('<Lems') or line.startswith('<?xml'):
+                                if not exists:
+                                    outfile.write(line)
+                            else:
+                                if not exists and line.startswith('</Lems>'):
+                                    continue
+                                outfile.write(line)
+                exists = True
 
 
             # print(ElementTree.tostring(ElementTree.parse(xml1).getroot()).decode("utf-8"))
