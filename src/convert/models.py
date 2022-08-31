@@ -88,12 +88,9 @@ class Models:
 
             xml1 = self.path
             xml2 = os.path.join('templates', self.model_name + '.xml')
+            file = os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml')
 
-            # with open(os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml'), 'a') as file:
-            #     for xml in [xml2, xml1]:
-            #         temp = ElementTree.parse(xml)
             exists = False
-            file = '../../examples/test.xml'
 
             if os.path.exists(file):
                 os.remove(file)
@@ -112,13 +109,6 @@ class Models:
                 exists = True
 
 
-            # print(ElementTree.tostring(ElementTree.parse(xml1).getroot()).decode("utf-8"))
-            # print(ElementTree.tostring(ElementTree.parse(xml2).getroot()).decode("utf-8"))
-
-
 print(Models('hindmarshRose', '../../examples', suffix='50healthy', uid='delta_series',
              r=[0.006], a=[1.0], b=[3.0], c=[1.0], d=[5.0], s=[4.0], xo=[-1.6], K11=[0.5],
              K12=[0.1], K21=[0.15], sigma=[0.3], mu=[2.2], variables_of_interest=["xi", "alpha"]).model)
-
-# def __init__(self, model_name: [None, str, list], output, uid='default',
-#              usage='app', unit='s', store_numeric=True, suffix=None, **params):
