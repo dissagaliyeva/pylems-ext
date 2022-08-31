@@ -25,10 +25,8 @@ Features:
 1. Add logger that shows the steps and if there were any mistakes
 
 """
-import json
-import os
-import re
 
+import re
 from utils import *
 from models import *
 
@@ -81,6 +79,3 @@ class XML:
 
 
 xm = XML(suffix='50healthy', uid='delta_times')
-
-
-

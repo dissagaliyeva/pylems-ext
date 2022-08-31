@@ -1,9 +1,5 @@
-import glob
 import os
-import re
 import shutil
-from xml.etree import ElementTree
-
 import lems.api as lems
 
 
