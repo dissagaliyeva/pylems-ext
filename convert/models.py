@@ -1,6 +1,7 @@
 import glob
 import os
 import re
+import shutil
 from xml.etree import ElementTree
 
 import lems.api as lems
@@ -71,7 +72,7 @@ class Models:
     def save_xml(self, model, ftype='default'):
         # save the default model
         if ftype == 'default':
-            self.path = os.path.join(self.output, f'{self.suffix}_param.xml')
+            self.path = os.path.join(self.output, f'desc-{self.suffix}_param.xml')
             model.export_to_file(self.path)
         elif ftype == 'model':
             self.merge_xml()
@@ -100,6 +101,9 @@ class Models:
                                     continue
                                 outfile.write(line)
                 exists = True
+
+            # save eq xml
+            shutil.copy(xml2, os.path.join(self.output, f'desc-{self.suffix}_eq.xml'))
 
 
 # print(Models('hindmarshrose', '../../examples', suffix='50healthy', uid='delta_series',

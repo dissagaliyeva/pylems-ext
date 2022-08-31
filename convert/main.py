@@ -52,6 +52,8 @@ class XML:
         self.content = open_file(input_path)                # get content from the input path
         self.models = ['hindmarshrose', 'wongwang']         # supported models
 
+        self.get_model()
+
     def get_model(self):
         pattern = ''.join(self.content)
 
@@ -76,10 +78,9 @@ class XML:
             struct[k] = [float(v)]
 
         self.params = struct
-        print(self.params)
 
 
 xm = XML(suffix='50healthy', uid='delta_times')
-print(xm.get_model())
+
 
 
