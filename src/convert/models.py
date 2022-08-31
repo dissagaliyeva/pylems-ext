@@ -74,18 +74,11 @@ class Models:
             self.path = os.path.join(self.output, f'{self.suffix}_param.xml')
             model.export_to_file(self.path)
         elif ftype == 'model':
-            # model.add(model.import_from_file(f'templates/{self.model_name}.xml'))
-            # print(model)
-            # model.import_from_file(f'templates/{self.model_name}.xml')
-            # print(model.merge_component_types(lems.Model().import_from_file(f'templates/{self.model_name}.xml'), model))
             self.merge_xml()
-        #  model.export_to_file(os.path.join(self.output, 'params.xml'))
         pass
 
     def merge_xml(self):
         if os.path.exists(self.path):
-            model = lems.Model()
-
             xml1 = self.path
             xml2 = os.path.join('templates', self.model_name + '.xml')
             file = os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml')
