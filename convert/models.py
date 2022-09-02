@@ -80,7 +80,7 @@ class Models:
             # get LEMS model and Components
             model = self.create_params()
 
-            # save the default
+            # save the default parameters and model
             self.save_xml(model)
 
             if self.app:
