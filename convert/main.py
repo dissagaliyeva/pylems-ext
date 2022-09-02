@@ -65,7 +65,8 @@ class XML:
             self.temp_params = [x.strip(',') for x in re.findall(r'[a-zA-Z0-9]+\=[0-9\,\.\-\'\"\[\]]+', match[0])
                                 if x.endswith('],')]
             self.split_params()
-            self.model = Models(self.model_name, self.output_path, self.uid, suffix=self.suffix, **self.params)
+            self.model = Models(self.model_name, self.output_path, self.uid,
+                                suffix=self.suffix, app=True, **self.params)
 
     def split_params(self):
         struct = {}

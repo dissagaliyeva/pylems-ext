@@ -19,11 +19,9 @@ class Models:
     uid:                str (default = 'default')
         Unique identifier that is used in lems.Component construction
 
-    usage:              str (default='app')
+    app:              bool (default=False)
         Whether the user is using this conversion through BEP034 conversion app (https://github.com/dissagaliyeva/incf).
-        By default, the value is 'app' indicating that the conversions will follow BIDS format. For that,
-        you will need to supplement "uid" and "suffix" fields.
-        Otherwise, select supply any other string.
+        If True, the conversions will follow BIDS format. For that you will need to supplement "uid" and "suffix" fields.
 
     unit:               str (default='s')
         #TODO: add description here
@@ -41,11 +39,11 @@ class Models:
 
     """
     def __init__(self, model_name: str = 'hindmarshRose', output: str = '../examples', uid: str = 'default',
-                 usage: str = 'app', unit: str = 's', store_numeric: bool = True, suffix: str = None, **params):
+                 app: bool = False, unit: str = 's', store_numeric: bool = True, suffix: str = None, **params):
         self.model_name = model_name                    # chosen model
         self.output = output                            # path to store output results
         self.uid = uid                                  # lems.Component's id_ parameter
-        self.usage = usage                              # whether you're using it through the app (https://github.com/dissagaliyeva/incf)
+        self.app = app                                  # whether you're using it through the app (https://github.com/dissagaliyeva/incf)
         self.unit = unit                                # TODO: add description
         self.store_numeric = store_numeric              # whether to store only numeric fields from the model
         self.suffix = suffix                            # suffix to use in file naming
@@ -71,17 +69,21 @@ class Models:
         self.execute_steps()
 
     def execute_steps(self):
-        """:return:"""
+        """
+        Define the steps to verify, preprocess, and save XML files.
+        """
         # change default model values with values found in Python code
         self.change_params()
 
-        #
+        # save XML files
         if self.model is not None:
+            # get LEMS model and Components
             model = self.create_params()
 
+            # save the default
             self.save_xml(model)
 
-            if self.usage == 'app':
+            if self.app:
                 self.save_xml(model, 'model')
 
     def change_params(self):
@@ -96,14 +98,20 @@ class Models:
         self.model = {key: self.params.get(key, temp[key]) for key in temp.keys()}
 
     def create_params(self):
-        """:return:"""
+        """
+        Create lems.Model and add the components.
+        """
+
+        # instantiate lems.Model
         model = lems.Model()
 
+        # define model's type
         if self.model_name == 'hindmarshrose':
             self.comp_type = 'SJHM3D'
         elif self.model_name == 'wongwang':
             self.comp_type = 'WongWang'
 
+        # store only numeric values if enabled
         if self.store_numeric:
             # remove brackets and store only numeric values
             self.model = {k: v[0] for k, v in self.model.items() if isinstance(v, list) and len(v) == 1}
@@ -116,6 +124,7 @@ class Models:
 
     def save_xml(self, model, ftype='default'):
         """
+        Save the model to XML file.
 
         Parameters
         ----------
