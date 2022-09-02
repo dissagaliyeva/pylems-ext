@@ -56,7 +56,7 @@ class XML:
         pattern = ''.join(self.content)
 
         # TODO: add other models as well
-        match = re.findall(r'Hindmarsh[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern)
+        match = re.findall(r'(?:Hindmarsh|Wongwang)[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern, flags=re.IGNORECASE)
 
         if len(match) > 0:
             # get only parameters

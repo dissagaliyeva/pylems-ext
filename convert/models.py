@@ -4,9 +4,14 @@ import lems.api as lems
 
 
 class Models:
-    def __init__(self, model_name: [None, str, list], output, uid='default',
-                 usage='app', unit='s', store_numeric=True, suffix=None, **params):
-        self.model_name = model_name  # define the selected model
+    """
+
+
+
+    """
+    def __init__(self, model_name: str = 'hindmarshRose', output: str = '../examples', uid: str = 'default',
+                 usage: str = 'app', unit: str = 's', store_numeric: bool = True, suffix: str = None, **params):
+        self.model_name = model_name                    # define the selected model
         self.output = output
         self.uid = uid
         self.usage = usage
@@ -34,6 +39,7 @@ class Models:
         self.execute_steps()
 
     def execute_steps(self):
+        """:return:"""
         # 1. change default values if supplemented
         self.change_params()
 
@@ -44,10 +50,12 @@ class Models:
                 self.save_xml(model, 'model')
 
     def change_params(self):
+        """:return:"""
         temp = self.models[self.model_name].copy()
         self.model = {key: self.params.get(key, temp[key]) for key in temp.keys()}
 
     def create_params(self):
+        """:return:"""
         model = lems.Model()
 
         if self.model_name == 'hindmarshrose':
@@ -66,6 +74,20 @@ class Models:
         return model
 
     def save_xml(self, model, ftype='default'):
+        """
+
+        Parameters
+        ----------
+        model :
+            param ftype:
+        ftype :
+            (Default value = 'default')
+
+        Returns
+        -------
+
+        
+        """
         # save the default model
         if ftype == 'default':
             self.path = os.path.join(self.output, f'desc-{self.suffix}_param.xml')
@@ -75,6 +97,7 @@ class Models:
         pass
 
     def merge_xml(self):
+        """:return:"""
         if os.path.exists(self.path):
             xml1 = self.path
             xml2 = os.path.join('templates', self.model_name + '.xml')
@@ -100,8 +123,3 @@ class Models:
 
             # save eq xml
             shutil.copy(xml2, os.path.join(self.output, f'desc-{self.suffix}_eq.xml'))
-
-
-# print(Models('hindmarshrose', '../../examples', suffix='50healthy', uid='delta_series',
-#              r=[0.006], a=[1.0], b=[3.0], c=[1.0], d=[5.0], s=[4.0], xo=[-1.6], K11=[0.5],
-#              K12=[0.1], K21=[0.15], sigma=[0.3], mu=[2.2], variables_of_interest=["xi", "alpha"]).model)
