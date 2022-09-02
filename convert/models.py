@@ -5,6 +5,18 @@ import lems.api as lems
 
 class Models:
     """
+    Create an XML model using PyLEMS and supplemented Python code, change default parameters,
+    and save files in the specified folder.
+
+    Parameters
+    ----------
+    model_name : str (default = 'hindmarshRose')
+        Name of the model found in Python code. Currently supported model(s): HindmarshRose.
+    output:     str (default='../examples')
+        Path to the folder where conversions need to be stored.
+    uid:        str (default = 'default')
+        Unique identifier that is used in lems.Component construction
+    usage:      str (default='app')
 
 
 
