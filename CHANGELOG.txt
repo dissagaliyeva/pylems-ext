@@ -1,0 +1,13 @@
+# Change Log
+---
+
+0.0.1 (02/09/2022)
+---
+First release that supports Python code traversal and HindmarshRose model.
+
+### Added
+- Code traversal excluding comments, imports, and empty lines
+- Pattern matching for finding models using Regex
+- Model's default parameter alteration with parameters found using Regex
+- PyLEMS model creation
+- XML storage in a specified folder
