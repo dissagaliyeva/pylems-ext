@@ -44,16 +44,16 @@ class Models:
                  usage: str = 'app', unit: str = 's', store_numeric: bool = True, suffix: str = None, **params):
         self.model_name = model_name                    # chosen model
         self.output = output                            # path to store output results
-        self.uid = uid                                  #
-        self.usage = usage
-        self.unit = unit
-        self.store_numeric = store_numeric
-        self.suffix = suffix
-        self.params = params
+        self.uid = uid                                  # lems.Component's id_ parameter
+        self.usage = usage                              # whether you're using it through the app (https://github.com/dissagaliyeva/incf)
+        self.unit = unit                                # TODO: add description
+        self.store_numeric = store_numeric              # whether to store only numeric fields from the model
+        self.suffix = suffix                            # suffix to use in file naming
+        self.params = params                            # parameters derived from supplemented Python code
 
-        self.path = None
-        self.model = None
-        self.comp_type = uid
+        self.path = None                                # full path (with file name)
+        self.model = None                               # lems model
+        self.comp_type = uid                            # model name (SJHM3D, WongWang)
 
         self.models = {
             # define default values of HindmarhRose from TVB model's package
@@ -67,13 +67,15 @@ class Models:
                                                             alpha=[-4., 4.], beta=[-20., 20.], gamma=[2., 10.]))
         }
 
+        # run the steps to save files
         self.execute_steps()
 
     def execute_steps(self):
         """:return:"""
-        # 1. change default values if supplemented
+        # change default model values with values found in Python code
         self.change_params()
 
+        #
         if self.model is not None:
             model = self.create_params()
 
@@ -83,8 +85,14 @@ class Models:
                 self.save_xml(model, 'model')
 
     def change_params(self):
-        """:return:"""
+        """
+        Iterate over newly-found parameters and change the default values.
+        """
+
+        # copy the existing model
         temp = self.models[self.model_name].copy()
+
+        # change default values and store in a new variable
         self.model = {key: self.params.get(key, temp[key]) for key in temp.keys()}
 
     def create_params(self):
