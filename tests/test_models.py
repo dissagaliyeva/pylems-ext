@@ -21,6 +21,11 @@ def test_models():
     path = os.path.join('examples', 'desc-50healthy_param.xml')
     check(model, path)
 
+    # check with app=True
+    model = Models(uid='delta_times', suffix='50healthy', app=True)
+    for path in ['desc-50healthy_param.xml', 'desc-50healthy_eq.xml', 'model-SJHM3D_delta_times.xml']:
+        check(model, os.path.join('examples', path))
+
 
 def check(model, path):
     assert model.params == {}, 'No parameters expected'
