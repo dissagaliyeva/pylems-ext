@@ -1,7 +1,11 @@
 import os
 import shutil
+import sys
+
 import lems.api as lems
 import pylems_code.utils as utils
+
+sys.path.append('.')
 
 
 class Models:
@@ -39,7 +43,7 @@ class Models:
         Parameters derived from Python code, already preprocessed in main.py.
 
     """
-    def __init__(self, model_name: str = 'hindmarshrose', output: str = '../examples', uid: str = 'default',
+    def __init__(self, model_name: str = 'hindmarshrose', output: str = 'examples', uid: str = 'default',
                  app: bool = False, unit: str = 's', store_numeric: bool = True, suffix: str = None, **params):
         self.model_name = model_name                    # chosen model
         self.output = output                            # path to store output results
@@ -143,6 +147,7 @@ class Models:
                 self.path = os.path.join(self.output, f'{self.uid}_param.xml')
 
             model.export_to_file(self.path)
+            self.model = model
         elif ftype == 'model':
             self.merge_xml()
 
