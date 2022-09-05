@@ -1,6 +1,7 @@
 import os
 import shutil
 import lems.api as lems
+import pylems_code.utils as utils
 
 
 class Models:
@@ -38,7 +39,7 @@ class Models:
         Parameters derived from Python code, already preprocessed in main.py.
 
     """
-    def __init__(self, model_name: str = 'hindmarshRose', output: str = '../examples', uid: str = 'default',
+    def __init__(self, model_name: str = 'hindmarshrose', output: str = '../examples', uid: str = 'default',
                  app: bool = False, unit: str = 's', store_numeric: bool = True, suffix: str = None, **params):
         self.model_name = model_name                    # chosen model
         self.output = output                            # path to store output results
@@ -56,13 +57,7 @@ class Models:
         self.models = {
             # define default values of HindmarhRose from TVB model's package
             # https://github.com/the-virtual-brain/tvb-root/blob/master/tvb_library/tvb/simulator/models/stefanescu_jirsa.py
-            'hindmarshrose': dict(r=[0.006], a=[1.], b=[3.], c=[1.], d=[5.], s=[1.], xo=[-1.6], K11=[0.5],
-                                  K12=[0.1], K21=[0.15], sigma=[0.3], mu=[3.3], x_1=[-1.6], A_ik=None, B_ik=None,
-                                  C_ik=None, a_i=None, b_i=None, c_i=None, d_i=None, e_i=None, f_i=None, h_i=None,
-                                  p_i=None, IE_i=None, II_i=None, m_i=None, n_i=None,
-                                  variables_of_interest=['xi', 'eta', 'tau'],
-                                  state_variable_range=dict(x=[-4., 4.], y=[-60., 20.], z=[-2., 18.], eta=[-25., 20.0],
-                                                            alpha=[-4., 4.], beta=[-20., 20.], gamma=[2., 10.]))
+            'hindmarshrose': utils.TVB_MODELS['SJHM3D']['params']
         }
 
         # run the steps to save files
@@ -118,7 +113,11 @@ class Models:
 
         # store only those parameters that have numeric values,
         # this will be used and stored in ../output/param folder
-        model.add(lems.Component(id_=self.uid, type_=self.comp_type, **self.model))
+        if self.suffix:
+            model.add(lems.Component(id_=self.uid, type_=self.comp_type, **self.model))
+        else:
+            model.add(lems.Component(id_=self.uid, type_=self.comp_type,
+                                     **utils.preprocess_params(utils.TVB_MODELS[self.comp_type]['params'])))
 
         return model
 
@@ -128,25 +127,30 @@ class Models:
 
         Parameters
         ----------
-        model :
-            param ftype:
-        ftype :
-            (Default value = 'default')
+        model :     lems.api.Model
+            Model with parameters, equations, or parameters & equations
 
-        Returns
-        -------
+        ftype :     str (default='default')
+            How the results need to be stored
+            # TODO: give examples
 
-        
         """
         # save the default model
         if ftype == 'default':
-            self.path = os.path.join(self.output, f'desc-{self.suffix}_param.xml')
+            if self.suffix:
+                self.path = os.path.join(self.output, f'desc-{self.suffix}_param.xml')
+            else:
+                self.path = os.path.join(self.output, f'{self.uid}_param.xml')
+
             model.export_to_file(self.path)
         elif ftype == 'model':
             self.merge_xml()
 
     def merge_xml(self):
-        """:return:"""
+        """
+        Function that merges model's equations found in 'templates/[hindmarshRose|wongwang].xml'
+        and parameters found in Python code.
+        """
         if os.path.exists(self.path):
             xml1 = self.path
             xml2 = os.path.join('templates', self.model_name + '.xml')
@@ -172,3 +176,6 @@ class Models:
 
             # save eq xml
             shutil.copy(xml2, os.path.join(self.output, f'desc-{self.suffix}_eq.xml'))
+
+
+m = Models()
