@@ -24,7 +24,7 @@ class Models:
         If True, the conversions will follow BIDS format. For that you will need to supplement "uid" and "suffix" fields.
 
     unit:               str (default='s')
-        #TODO: add description here
+        # TODO: add description here
 
     store_numeric :     bool (default=True)
         Whether to store only numeric values. For example, if you want to disregard
