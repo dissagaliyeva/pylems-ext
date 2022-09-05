@@ -27,8 +27,8 @@ Features:
 """
 
 import re
-from utils import *
-from models import *
+from pylems_code.utils import *
+from pylems_code.models import *
 
 
 class XML:
