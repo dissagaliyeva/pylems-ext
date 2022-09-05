@@ -181,6 +181,3 @@ class Models:
 
             # save eq xml
             shutil.copy(xml2, os.path.join(self.output, f'desc-{self.suffix}_eq.xml'))
-
-
-m = Models()
