@@ -1,5 +1,5 @@
-import json
 import os
+
 
 TVB_MODELS = {
     'SJHM3D': {'name': 'hindmarshrose',

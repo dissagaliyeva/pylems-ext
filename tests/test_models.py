@@ -1,12 +1,11 @@
 import os
 import lems.api as lems
-import pylems_code.utils as utils
-from pylems_code.models import Models
+from src.pylems_codext import Models
 
 
 pythonpath = [
     '.',
-    'pylems_code'
+    'pylems_codext'
 ]
 
 

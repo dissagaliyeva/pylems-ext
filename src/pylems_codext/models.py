@@ -3,9 +3,9 @@ import shutil
 import sys
 
 import lems.api as lems
-import pylems_code.utils as utils
+import src.pylems_codext.utils as utils
 
-sys.path.append('.')
+sys.path.append('')
 
 
 class Models:
@@ -158,7 +158,7 @@ class Models:
         """
         if os.path.exists(self.path):
             xml1 = self.path
-            xml2 = os.path.join('pylems_code', 'templates', self.model_name + '.xml')
+            xml2 = os.path.join('templates', self.model_name + '.txt')
             file = os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml')
 
             exists = False

@@ -1,8 +1,8 @@
 # Usage: xm = XML(suffix='50healthy', uid='delta_times', app=True)
 
 import re
-from pylems_code.utils import *
-from pylems_code.models import *
+from src.pylems_codext.utils import *
+from src.pylems_codext.models import *
 
 
 class XML:
@@ -107,3 +107,6 @@ class XML:
             struct[k] = [float(v)]
 
         self.params = struct
+
+
+xm = XML(input_path='../../examples/50healthy_code.py', suffix='50healthy', uid='delta_times', app=True)
