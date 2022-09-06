@@ -3,7 +3,7 @@ import shutil
 import sys
 
 import lems.api as lems
-import src.pylems_codext.utils as utils
+import pylems_py2xml.utils as utils
 
 sys.path.append('')
 
@@ -139,6 +139,9 @@ class Models:
             # TODO: give examples
 
         """
+        if not os.path.exists(self.output):
+            os.mkdir(self.output)
+
         # save the default model
         if ftype == 'default':
             if self.suffix:
@@ -153,12 +156,14 @@ class Models:
 
     def merge_xml(self):
         """
-        Function that merges model's equations found in 'templates/[hindmarshRose|wongwang].xml'
+        Function that merges model's equations found in 'data/[hindmarshRose|wongwang].xml'
         and parameters found in Python code.
         """
+        here = os.path.dirname(os.path.abspath(__file__))
+
         if os.path.exists(self.path):
             xml1 = self.path
-            xml2 = os.path.join('templates', self.model_name + '.txt')
+            xml2 = os.path.join(here, 'data', self.model_name + '.xml')
             file = os.path.join(self.output, f'model-{self.comp_type}_{self.uid}.xml')
 
             exists = False

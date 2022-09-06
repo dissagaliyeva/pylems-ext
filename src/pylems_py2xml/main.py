@@ -1,8 +1,8 @@
 # Usage: xm = XML(suffix='50healthy', uid='delta_times', app=True)
 
 import re
-from src.pylems_codext.utils import *
-from src.pylems_codext.models import *
+from pylems_py2xml.utils import *
+from pylems_py2xml.models import *
 
 
 class XML:
@@ -38,6 +38,7 @@ class XML:
         HindmarshRose model -> model-SJHM3D_{uid}.xml) and parameters (e.g., {suffix}_param.xml).
 
     """
+
     def __init__(self, input_path='../examples/50healthy_code.py', output_path='../examples',
                  unit='s', uid='default', app=False, store_numeric=True, suffix=None):
         # define passed-in parameters
@@ -55,8 +56,8 @@ class XML:
         self.model = None
         self.temp_params = None
 
-        self.content = open_file(input_path)                # get content from the input path
-        self.models = ['hindmarshrose', 'wongwang']         # supported models
+        self.content = open_file(input_path)  # get content from the input path
+        self.models = ['hindmarshrose', 'wongwang']  # supported models
 
         self.get_model()
 
@@ -107,6 +108,3 @@ class XML:
             struct[k] = [float(v)]
 
         self.params = struct
-
-
-xm = XML(input_path='../../examples/50healthy_code.py', suffix='50healthy', uid='delta_times', app=True)

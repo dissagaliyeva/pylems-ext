@@ -1,1 +1,2 @@
-global-include *.xml *.py *.ipynb
+include *.txt *.xml
+recursive-include examples *.txt *.py *.xml

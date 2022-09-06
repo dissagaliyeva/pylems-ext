@@ -1,11 +1,11 @@
 import os
 import lems.api as lems
-from src.pylems_codext import Models
+from src.pylems_py2xml import Models
 
 
 pythonpath = [
     '.',
-    'pylems_codext'
+    'pylems_py2xml'
 ]
 
 
