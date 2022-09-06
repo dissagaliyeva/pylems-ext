@@ -1,4 +1,0 @@
-<?xml version="1.0" ?>
-<Lems xmlns="http://www.neuroml.org/lems/0.7.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/lems/0.7.6 https://raw.githubusercontent.com/LEMS/LEMS/development/Schemas/LEMS/LEMS_v0.7.6.xsd">
-  <Component id="default" type="SJHM3D" r="0.006" a="1.0" b="3.0" c="1.0" d="5.0" s="1.0" xo="-1.6" K11="0.5" K12="0.1" K21="0.15" sigma="0.3" mu="3.3" x_1="-1.6" A_ik="None" B_ik="None" C_ik="None" a_i="None" b_i="None" c_i="None" d_i="None" e_i="None" f_i="None" h_i="None" p_i="None" IE_i="None" II_i="None" m_i="None" n_i="None" variables_of_interest="['xi', 'eta', 'tau']" state_variable_range="{'x': [-4.0, 4.0], 'y': [-60.0, 20.0], 'z': [-2.0, 18.0], 'eta': [-25.0, 20.0], 'alpha': [-4.0, 4.0], 'beta': [-20.0, 20.0], 'gamma': [2.0, 10.0]}"/>
-</Lems>
