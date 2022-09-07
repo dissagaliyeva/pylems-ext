@@ -1,8 +1,11 @@
 # Usage: xm = XML(suffix='50healthy', uid='delta_times', app=True)
 
 import re
-from pylems_py2xml.utils import *
-from pylems_py2xml.models import *
+# from pylems_py2xml.utils import *
+# from pylems_py2xml.models import *
+
+from src.pylems_py2xml.utils import *
+from src.pylems_py2xml.models import *
 
 
 class XML:
@@ -13,11 +16,12 @@ class XML:
 
     Parameters
     ----------
-    input_path :        str (default='../examples/50healthy_code.py')
+    inp :               str (default='../examples/50healthy_code.py')
         Path to the Python code that contains one of the models (HindmarshRose, WongWang, etc)
 
-    output_path :       str (default='../examples')
-        Path to a folder that will store converted XML files
+    output_path :       str, dict (default='../examples')
+        Path to a folder that will store converted XML files OR
+        Dictionary containing model parameters & model keyword that specifies the model being used
 
     unit :              str (default='s' (seconds))
         # TODO: add description here
@@ -39,11 +43,11 @@ class XML:
 
     """
 
-    def __init__(self, inp='../examples/50healthy_code.py', output_path='../examples',
+    def __init__(self, inp: [str, dict] = '../examples/50healthy_code.py', output_path='../examples',
                  unit='s', uid='default', app=False, store_numeric=True, suffix=None):
         # define passed-in parameters
-        self.input_path = inp
-        self.output_path = output_path
+        self.input = inp
+        self.output = output_path
         self.unit = unit
         self.uid = uid
         self.app = app
@@ -56,13 +60,17 @@ class XML:
         self.model = None
         self.temp_params = None
 
-        self.content = open_file(inp)  # get content from the input path
-        self.models = ['hindmarshrose', 'wongwang']  # supported models
+        self.models = ['hindmarshrose', 'wongwang', 'generic2doscillator']  # supported models
 
         if isinstance(inp, str):
             self.get_model()
+            self.content = open_file(inp)                                   # get content from the input path
         elif isinstance(inp, dict):
-            pass
+            model = inp['model']
+            del inp['model']
+
+            if app:
+                self.model = Models(model, self.output, self.uid, suffix=self.suffix, app=True, **inp)
 
     def get_model(self):
         """
@@ -88,7 +96,7 @@ class XML:
             self.split_params()
 
             # call the Models class to save XML files
-            self.model = Models(self.model_name, self.output_path, self.uid,
+            self.model = Models(self.model_name, self.output, self.uid,
                                 suffix=self.suffix, app=True, **self.params)
 
     def split_params(self):

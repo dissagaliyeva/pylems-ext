@@ -3,7 +3,8 @@ import shutil
 import sys
 
 import lems.api as lems
-import pylems_py2xml.utils as utils
+# import pylems_py2xml.utils as utils
+import src.pylems_py2xml.utils as utils
 
 sys.path.append('')
 
@@ -61,7 +62,8 @@ class Models:
         self.models = {
             # define default values of HindmarhRose from TVB model's package
             # https://github.com/the-virtual-brain/tvb-root/blob/master/tvb_library/tvb/simulator/models/stefanescu_jirsa.py
-            'hindmarshrose': utils.TVB_MODELS['SJHM3D']['params']
+            'hindmarshrose': utils.TVB_MODELS['SJHM3D']['params'],
+            'generic2doscillator': utils.TVB_MODELS['G2DOS']['params']
         }
 
         # run the steps to save files
@@ -109,19 +111,22 @@ class Models:
             self.comp_type = 'SJHM3D'
         elif self.model_name == 'wongwang':
             self.comp_type = 'WongWang'
+        elif self.model_name == 'generic2doscillator':
+            self.comp_type = 'G2DOS'
 
-        # store only numeric values if enabled
-        if self.store_numeric:
-            # remove brackets and store only numeric values
-            self.model = {k: v[0] for k, v in self.model.items() if isinstance(v, list) and len(v) == 1}
+        if self.comp_type is not None:
+            # store only numeric values if enabled
+            if self.store_numeric:
+                # remove brackets and store only numeric values
+                self.model = {k: v[0] for k, v in self.model.items() if isinstance(v, list) and len(v) == 1}
 
-        # store only those parameters that have numeric values,
-        # this will be used and stored in ../output/param folder
-        if self.suffix:
-            model.add(lems.Component(id_=self.uid, type_=self.comp_type, **self.model))
-        else:
-            model.add(lems.Component(id_=self.uid, type_=self.comp_type,
-                                     **utils.preprocess_params(utils.TVB_MODELS[self.comp_type]['params'])))
+            # store only those parameters that have numeric values,
+            # this will be used and stored in ../output/param folder
+            if self.suffix:
+                model.add(lems.Component(id_=self.uid, type_=self.comp_type, **self.model))
+            else:
+                model.add(lems.Component(id_=self.uid, type_=self.comp_type,
+                                         **utils.preprocess_params(utils.TVB_MODELS[self.comp_type]['params'])))
 
         return model
 

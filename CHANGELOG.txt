@@ -1,7 +1,15 @@
 # Change Log
 ---
 
-0.0.1 (02/09/2022)
+1.0.1 (07/09/2022)
+---
+
+### Added
+- Generic2dOscillator template
+- Support for dictionary input
+
+
+1.0.0 (06/09/2022)
 ---
 First release that supports Python code traversal and HindmarshRose model.
 
@@ -11,5 +19,4 @@ First release that supports Python code traversal and HindmarshRose model.
 - Model's default parameter alteration with parameters found using Regex
 - PyLEMS model creation
 - XML storage in a specified folder
-
 
