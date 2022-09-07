@@ -39,10 +39,10 @@ class XML:
 
     """
 
-    def __init__(self, input_path='../examples/50healthy_code.py', output_path='../examples',
+    def __init__(self, inp='../examples/50healthy_code.py', output_path='../examples',
                  unit='s', uid='default', app=False, store_numeric=True, suffix=None):
         # define passed-in parameters
-        self.input_path = input_path
+        self.input_path = inp
         self.output_path = output_path
         self.unit = unit
         self.uid = uid
@@ -56,10 +56,13 @@ class XML:
         self.model = None
         self.temp_params = None
 
-        self.content = open_file(input_path)  # get content from the input path
+        self.content = open_file(inp)  # get content from the input path
         self.models = ['hindmarshrose', 'wongwang']  # supported models
 
-        self.get_model()
+        if isinstance(inp, str):
+            self.get_model()
+        elif isinstance(inp, dict):
+            pass
 
     def get_model(self):
         """
