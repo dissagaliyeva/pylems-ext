@@ -1,11 +1,8 @@
 # Usage: xm = XML(suffix='50healthy', uid='delta_times', app=True)
 
 import re
-# from pylems_py2xml.utils import *
-# from pylems_py2xml.models import *
-
-from src.pylems_py2xml.utils import *
-from src.pylems_py2xml.models import *
+from pylems_py2xml.utils import *
+from pylems_py2xml.models import *
 
 
 class XML:

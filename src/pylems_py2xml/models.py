@@ -3,8 +3,7 @@ import shutil
 import sys
 
 import lems.api as lems
-# import pylems_py2xml.utils as utils
-import src.pylems_py2xml.utils as utils
+import pylems_py2xml.utils as utils
 
 sys.path.append('')
 
