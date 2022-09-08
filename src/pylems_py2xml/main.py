@@ -60,8 +60,8 @@ class XML:
         self.models = ['hindmarshrose', 'wongwang', 'generic2doscillator']  # supported models
 
         if isinstance(inp, str):
-            self.get_model()
             self.content = open_file(inp)                                   # get content from the input path
+            self.get_model()
         elif isinstance(inp, dict):
             model = inp['model']
             del inp['model']
@@ -116,3 +116,7 @@ class XML:
             struct[k] = [float(v)]
 
         self.params = struct
+
+
+XML(uid='delta_times', suffix='delta', app=True, inp='../../examples/50healthy_code.py',
+    output_path='examples')
