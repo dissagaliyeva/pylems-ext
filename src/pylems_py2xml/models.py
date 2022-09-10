@@ -62,7 +62,7 @@ class Models:
             # define default values of HindmarhRose from TVB model's package
             # https://github.com/the-virtual-brain/tvb-root/blob/master/tvb_library/tvb/simulator/models/stefanescu_jirsa.py
             'hindmarshrose': utils.TVB_MODELS['SJHM3D']['params'],
-            'generic2doscillator': utils.TVB_MODELS['G2DOS']['params']
+            'oscillator': utils.TVB_MODELS['G2DOS']['params']
         }
 
         # run the steps to save files
@@ -110,7 +110,7 @@ class Models:
             self.comp_type = 'SJHM3D'
         elif self.model_name == 'wongwang':
             self.comp_type = 'WongWang'
-        elif self.model_name == 'generic2doscillator':
+        elif self.model_name == 'oscillator':
             self.comp_type = 'G2DOS'
 
         if self.comp_type is not None:

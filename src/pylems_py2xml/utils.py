@@ -14,9 +14,8 @@ TVB_MODELS = {
                                                  alpha=[-4., 4.], beta=[-20., 20.], gamma=[2., 10.]))
     },
     'G2DOS': {
-        'name': 'generic2doscillator',
-        'desc': 'These are the equations to simulate the time series with the'
-                'Generic2dOscillator model.',
+        'name': 'oscillator',
+        'desc': 'These are the equations to simulate the time series with the Generic2dOscillator model.',
         'params': dict(tau=[1.], I=[0.1], a=[0.5], b=[0.4], c=[-4.], d=[0.02], e=[3.], f=[1.],
                        g=[0.], alpha=[1.], beta=[1.], gamma=[1.])
     }

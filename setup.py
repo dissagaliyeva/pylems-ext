@@ -17,7 +17,7 @@ classifiers = [
 
 setup(
     name='pylems_py2xml',
-    version='1.0.5',
+    version='1.0.7',
     description='Python code & dictionary traversal to XML',
     long_description=long_description,
     long_description_content_type="text/markdown",

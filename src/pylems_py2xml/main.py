@@ -57,7 +57,7 @@ class XML:
         self.model = None
         self.temp_params = None
 
-        self.models = ['hindmarshrose', 'wongwang', 'generic2doscillator']  # supported models
+        self.models = ['hindmarshrose', 'wongwang', 'oscillator']  # supported models
 
         if isinstance(inp, str):
             self.content = open_file(inp)                                   # get content from the input path
@@ -78,7 +78,7 @@ class XML:
         pattern = ''.join(self.content)
 
         # find models used and their parameters ignoring upper-, lower-case
-        match = re.findall(r'(?:hindmarsh|wongwang|generic2doscillator)[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+',
+        match = re.findall(r'(?:hindmarsh|wongwang|oscillator)[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+',
                            pattern, flags=re.IGNORECASE)
 
         # only if there's a match, traverse parameters and get their 'cleaned' version
