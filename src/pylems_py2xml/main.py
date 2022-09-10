@@ -78,7 +78,8 @@ class XML:
         pattern = ''.join(self.content)
 
         # find models used and their parameters ignoring upper-, lower-case
-        match = re.findall(r'(?:hindmarsh|wongwang)[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+', pattern, flags=re.IGNORECASE)
+        match = re.findall(r'(?:hindmarsh|wongwang|generic2doscillator)[a-zA-Z0-9=()\]\[\'\"\.\,\s\-\_]+',
+                           pattern, flags=re.IGNORECASE)
 
         # only if there's a match, traverse parameters and get their 'cleaned' version
         if len(match) > 0:
@@ -116,7 +117,3 @@ class XML:
             struct[k] = [float(v)]
 
         self.params = struct
-
-
-XML(uid='delta_times', suffix='delta', app=True, inp='../../examples/50healthy_code.py',
-    output_path='examples')
