@@ -151,6 +151,8 @@ class Models:
             if self.suffix:
                 self.path = os.path.join(self.output, f'desc-{self.suffix}_param.xml')
             else:
+                if self.uid != 'default':
+                    self.uid = self.uid.split('_')[0]
                 self.path = os.path.join(self.output, f'{self.uid}_param.xml')
 
             model.export_to_file(self.path)
