@@ -41,7 +41,7 @@ class XML:
     """
 
     def __init__(self, inp: [str, dict] = '../examples/50healthy_code.py', output_path='../examples',
-                 unit='s', uid='default', app=False, store_numeric=True, suffix=None):
+                 unit='s', uid='default', app=False, store_numeric=True, suffix=None, save=True):
         # define passed-in parameters
         self.input = inp
         self.output = output_path
@@ -50,6 +50,7 @@ class XML:
         self.app = app
         self.store_numeric = store_numeric
         self.suffix = suffix
+        self.save = save
 
         # create placeholder for to-be-supplemented variables
         self.model_name = None
@@ -66,7 +67,7 @@ class XML:
             model = inp['model']
             del inp['model']
 
-            if app:
+            if app and save:
                 self.model = Models(model, self.output, self.uid, suffix=self.suffix, app=True, **inp)
 
     def get_model(self):
@@ -93,9 +94,10 @@ class XML:
             # traverse cleaned parameters to get a dictionary of parameters
             self.split_params()
 
-            # call the Models class to save XML files
-            self.model = Models(self.model_name, self.output, self.uid,
-                                suffix=self.suffix, app=True, **self.params)
+            if self.save:
+                # call the Models class to save XML files
+                self.model = Models(self.model_name, self.output, self.uid,
+                                    suffix=self.suffix, app=True, **self.params)
 
     def split_params(self):
         """
